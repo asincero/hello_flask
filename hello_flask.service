@@ -1,0 +1,30 @@
+##
+# @file hello_flask.service
+# systemd(1) service file for the hello_flask application.
+#
+# NOTE: This file should be copied to the "~/.config/systemd/user" directory. 
+# To enable systemd(1) services for users, issue the following command as
+# root:
+#
+#     loginctl enable-linger <username>
+#
+# @author Arcadio A. Sincero Jr., <arcadiosincero@gmail.com>
+# @date 10/23/2019
+#
+# Copyright (c) 2019 Arcadio A. Sincero Jr.
+
+
+[Unit]
+Description="hello_flask uWSGI instance"
+After=network.target
+
+[Service]
+WorkingDirectory=/home/asincero/src/hello_flask/venv
+Environment=PATH=/home/asincero/src/hello_flask/venv/bin
+Environment=UWSGI_SOCKET=/tmp/hello_flask.socket
+ExecStart=/home/asincero/src/hello_flask/venv/bin/uwsgi --ini /home/asincero/src/hello_flask/venv/lib/python3.7/site-packages/hello_flask/uwsgi.ini
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,19 @@
+##
+# @file hello_flask.nginx
+# nginx(8) configuration for the hello_flask application.
+#
+# @author Arcadio A. Sincero Jr., <arcadiosincero@gmail.com>
+# @date 10/23/2019
+#
+# Copyright (c) 2019 Arcadio A. Sincero Jr.
+
+
+server {
+    listen 80;
+    server_name vm-debian10;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/tmp/hello_flask.socket;
+    }
+}

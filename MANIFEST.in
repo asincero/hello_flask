@@ -1,0 +1,6 @@
+# Include static and templated assets in the package.
+recursive-include hello_flask/static *
+recursive-include hello_flask/templates *
+
+# Include the uWSGI configuration file.
+include hello_flask/uwsgi.ini
